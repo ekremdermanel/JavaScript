@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+   <meta http-equiv="X-UA-Compatible" content="IE=edge">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Galeri</title>
+
+   <style>
+      #galeri {
+         width: 800px;
+         height: 400px;
+         margin: 10px auto;
+         position: relative;
+      }
+
+      #galeri img {
+         width: 800px;
+         height: 400px;
+         position: absolute;
+         left: 0;
+         top: 0;
+		 opacity:0;
+		 transition: opacity 1s ease;
+      }
+
+      #dugmeler {
+         width: 800px;
+         text-align: center;
+         margin: 10px auto;
+      }
+   </style>
+
+</head>
+<body>
+   <div id="galeri">
+      <img src="fotograflar/foto1.png" alt="">
+      <img src="fotograflar/foto2.png" alt="">
+      <img src="fotograflar/foto3.png" alt="">
+      <img src="fotograflar/foto4.png" alt="">
+      <img src="fotograflar/foto5.png" alt="">
+   </div>
+
+   <script>
+
+      var fotolar = document.getElementById("galeri").getElementsByTagName("img");
+      var toplam = fotolar.length;
+	  goster();
+
+      setInterval(goster,2000);
+
+      function goster() {
+         
+         
+         for(var i=0;i<toplam;i++)
+         {
+            fotolar[i].style.zIndex = 0;
+			fotolar[i].style.opacity = 0;
+         }
+
+         var r = Math.floor(Math.random() * toplam);
+         fotolar[r].style.zIndex=1;
+		 fotolar[r].style.opacity = 1;
+		 
+         
+      }
+
+   </script>
+</body>
+</html>

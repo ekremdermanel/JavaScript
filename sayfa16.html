@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+   <meta http-equiv="X-UA-Compatible" content="IE=edge">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Galeri</title>
+
+   <style>
+      #galeri {
+         width: 800px;
+         height: 400px;
+         margin: 10px auto;
+         position: relative;
+      }
+
+      #galeri img {
+         width: 800px;
+         height: 400px;
+         position: absolute;
+         left: 0;
+         top: 0;
+         opacity:0;
+         transition: opacity 1s ease;
+      }
+
+      #gosterge {
+         width: 800px;
+         position: absolute;
+         bottom: 10px;
+         display:flex;
+         justify-content:center;
+         gap:5px;
+      }
+	  
+	  #gosterge div {
+         cursor:pointer;
+         width: 50px;
+         height: 5px;
+		   background-color: white;
+         z-index: 2;
+      }
+   </style>
+
+</head>
+<body>
+   <div id="galeri" onmouseover="bekle()" onmouseleave="devam()">
+      <img src="fotograflar/foto1.png" alt="">
+      <img src="fotograflar/foto2.png" alt="">
+      <img src="fotograflar/foto3.png" alt="">
+      <img src="fotograflar/foto4.png" alt="">
+      <img src="fotograflar/foto5.png" alt="">
+	  <div id="gosterge"></div>
+   </div>
+
+   <script>
+
+      var fotolar = document.getElementById("galeri").getElementsByTagName("img");
+      var toplam = fotolar.length;
+      var gosterge = document.getElementById("gosterge");
+      var zamanlama;
+	  
+      for(var i=0;i<toplam;i++) {
+            gosterge.innerHTML += `<div onclick=\'fotoGoster(${i})\'></div>`;
+      }
+
+      var kareler = document.getElementById("gosterge").getElementsByTagName("div");
+      
+      var simdiki=-1;
+      var onceki;	  
+      goster();
+	  
+
+      zamanlama = setInterval(goster,2000);
+
+      function goster() {
+         simdiki++;
+
+			if(simdiki==toplam) {
+				simdiki=0;
+			}
+			
+			if(simdiki==0) {
+				onceki=toplam-1;
+			} else {
+				onceki=simdiki-1;
+			}
+			
+         fotolar[onceki].style.zIndex = 0;
+         fotolar[onceki].style.opacity = 0;
+         kareler[onceki].style.backgroundColor = "white";
+         fotolar[simdiki].style.zIndex = 1;
+         fotolar[simdiki].style.opacity = 1;
+         kareler[simdiki].style.backgroundColor = "red";         
+      }
+
+      function bekle() {
+			clearInterval(zamanlama);
+      }
+
+      function devam() {
+			zamanlama = setInterval(goster,2000);
+      }
+
+      function fotoGoster(numara) {     
+         onceki=simdiki;
+			simdiki=numara;
+
+         fotolar[onceki].style.zIndex = 0;
+         fotolar[onceki].style.opacity = 0;
+         kareler[onceki].style.backgroundColor = "white";
+         fotolar[simdiki].style.zIndex = 1;
+         fotolar[simdiki].style.opacity = 1;
+         kareler[simdiki].style.backgroundColor = "red";  
+      }
+
+   </script>
+</body>
+</html>

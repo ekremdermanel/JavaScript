@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+   <meta http-equiv="X-UA-Compatible" content="IE=edge">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Document</title>
+</head>
+<body>
+   <button id="dugme1" onclick="basla()">Başla</button>
+   <button id="dugme2" onclick="durdur()">Durdur</button>
+
+   <div id="yazi"></div>
+
+   <script>
+      var yazi = document.getElementById("yazi");
+      var dugme1 = document.getElementById("dugme1");
+      var dugme2 = document.getElementById("dugme2");
+      dugme2.setAttribute('disabled', '');
+
+      var zamanlama;
+
+      function basla() {
+         dugme1.setAttribute('disabled', '');
+         dugme2.removeAttribute('disabled');
+         zamanlama = setInterval(yazdir,1000);
+      }
+
+      function durdur() {
+         dugme1.removeAttribute('disabled');
+         dugme2.setAttribute('disabled', '');
+         clearInterval(zamanlama);
+      }
+
+      function yazdir() {
+         yazi.innerText += "Merhaba"; 
+      }
+   </script>
+</body>
+</html>

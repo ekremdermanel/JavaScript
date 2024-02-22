@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+   <meta http-equiv="X-UA-Compatible" content="IE=edge">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Document</title>
+   <style>
+      div {
+         background-color: lightblue;
+         margin: 10px;
+         padding: 10px;
+      }
+
+      #mesajlar div {
+         background-color: slategray;
+         color:lightgray;
+      }
+
+   </style>
+
+</head>
+<body>
+   <div>
+      <input type="text" id="mesaj">
+      <button id="dugme">Gönder</button>
+      <span id="uyari"></span>
+   </div>
+
+   <div id="mesajlar">
+      
+   </div>
+
+
+   <script src="jquery-3.6.3.js"></script>
+   <script>
+      
+   $(document).ready(function() {
+      $("#mesaj").focus();
+         
+         $("#dugme").click(function() {
+            $("#uyari").text("");
+            var yazi = $("#mesaj").val();
+
+            if(yazi=="")
+            {
+               $("#uyari").text("Boş bırakılamaz");
+               return;
+            }
+
+            //$("#mesajlar").append("<div>" + yazi + "</div>");
+
+            $("#mesajlar").append(
+               $("<div>" + yazi + "</div>").hide().fadeIn(500)
+            );
+            
+            $("#mesaj").val("");
+            $("#mesaj").focus();
+         });
+
+         $("#mesaj").keyup(function() {
+            if(event.keyCode == 13)
+            {
+               $("#dugme").trigger("click");
+            }
+         });
+   });
+               
+   </script>
+
+   
+   <script>
+      function gonder() {
+         document.getElementById("uyari").innerText = "";
+         var yazi = document.getElementById("mesaj").value;
+         
+         if(yazi=="")
+         {
+            document.getElementById("uyari").innerText = "Boş bırakılamaz!";
+            return;
+         }
+         document.getElementById("mesajlar").innerHTML += "<div>" + yazi + "</div>"
+         document.getElementById("mesaj").value="";
+         document.getElementById("mesaj").focus();
+      }
+
+      function bas() {
+         if(event.keyCode == 13)
+         {
+            gonder();
+         }
+      }
+   </script>
+</body>
+</html>

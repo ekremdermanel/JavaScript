@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+   <meta charset="UTF-8">
+   <meta http-equiv="X-UA-Compatible" content="IE=edge">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Document</title>
+   <style>
+      img {
+         width: 300px;
+         height: 200px;
+      }
+
+      div {
+         background-color: gray;
+         padding: 10px;
+         margin: 10px;
+      }
+
+      #icerik {
+         height: 300px;
+         background-color: blue;
+      }
+
+      #kutu {
+         width: 500px;
+         height: 300px;
+         background-color: red;
+         position: absolute;
+      }
+   </style>
+</head>
+
+<body>
+
+   <img src="fotograflar/foto1.png" alt="" class="resim">
+   <img src="fotograflar/foto2.png" alt="" class="resim">
+
+   <div>yazı</div>
+   <div>yazı</div>
+
+   <p id="icerik">
+      Lorem ipsum dolor sit amet consectetur adipisicing elit. Nihil, pariatur!
+   </p>
+
+   <span id="kutu">kutu</span>
+
+   <script src="jquery-3.6.3.js"></script>
+   <script>
+      $(document).ready(function () {
+         $(".resim").hide(3000);
+         $(".resim").show(1000);
+
+         $("div").fadeOut(1000);
+         $("div").fadeIn(5000);
+
+         $("#icerik").slideUp(2000);
+         $("#icerik").slideDown(500);
+
+         $("#kutu").animate({left:'200px',height:'150px',width:'150px'}, 1000);
+      });
+   </script>
+</body>
+
+</html>
